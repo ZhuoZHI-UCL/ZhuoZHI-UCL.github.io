@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='https://www.ucl.ac.uk/'>University College London</a>. PhD student at 
+subtitle: PhD student at <a href='https://www.ee.ucl.ac.uk/iiml/'>I2|ML group </a>, <a href='https://www.ucl.ac.uk/'>University College London</a>.
 
 profile:
   align: right
