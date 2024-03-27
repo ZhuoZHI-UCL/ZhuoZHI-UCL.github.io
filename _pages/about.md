@@ -20,8 +20,4 @@ social: true # includes social icons at the bottom of the page
 
 Zhuo received the BEng in Control Science from Shandong University (SDU)  and  MEng in Instrumental Science and Technology from Harbin Institute of Technology (HIT). He is currently a PhD student in the Department of Electronic and Electrical Engineering at University College London (UCL).  His research interests include deep learning, machine learning for healthcare, multimodal learning. 
 
-Download my CV from [here.](https://github.com/ZhuoZhi-HIT/myself/blob/master/assets/img/CV.pdf).
-
-
-
-Now he is a master candidate with the Department of Automatic Test and Control,Harbin Institute of Techology(HIT). He worked as a research assistant in SDU and took part in many national competitions. He has joined several projects, working on image process, circuit design, UAV and robot control and embedded system. 
+Download my CV from [here.](https://github.com/ZhuoZHI-UCL/ZhuoZHI-UCL.github.io/blob/master/CV.txt).
