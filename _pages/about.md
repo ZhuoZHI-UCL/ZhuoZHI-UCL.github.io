@@ -21,4 +21,4 @@ Zhuo received the BEng in Control Science from Shandong University (SDU)  and  M
 
 His research interests include deep learning, machine learning for healthcare, multimodal learning. He also has the experience in embedded system development, control system design, circuit design and signal processing.
 
-Download the CV from [here](https://github.com/ZhuoZHI-UCL/ZhuoZHI-UCL.github.io/blob/master/CV.txt).
+Download the CV from [here](https://github.com/ZhuoZHI-UCL/ZhuoZHI-UCL.github.io/blob/master/CV/CV_ZZ.pdf).
