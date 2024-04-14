@@ -1,81 +1,47 @@
 ---
 layout: page
-title: project 1
-description: a project with a background image
-img: assets/img/12.jpg
+title: "Lab‑on‑an‑App: AI Empowered Point‑of‑Care Diagnostics for Ageing Population"
+description: PhD project funded by EPSRC 
+img: assets/img/project_image/project1/cover.png
 importance: 1
-category: work
-related_publications: true
+category: PhD period
+related_publications: false
 ---
+# Lab‑on‑an‑App: AI Empowered Point‑of‑Care Diagnostics for Ageing Population (PhD project funded by EPSRC, UK)
+An overview of the project is shown in the figure below the text.
+## Background
+Anemia is a significant global health issue that affects a substantial portion of the population, including young children, pregnant women, and the elderly. The World Health Organization (WHO) reports that approximately 42% of children under five, 40% of pregnant women, and 20% of older adults worldwide suffer from anemia.
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+Typically, anemia manifests as general weakness or fatigue, diminished concentration, and shortness of breath during physical activity. In severe cases, symptoms may include palpitations, angina (especially if there is pre-existing heart disease), intermittent claudication, and signs of heart failure.
+## Problem
+Anaemia, defined as reduced hemoglobin concentration. Diagnostic thresholds are set at less than 130 to 140 g/L (13 to 14 g/dL) for men and less than 120 to 130 g/L (12 to 13 g/dL) for women. Traditional diagnosis method for anemia requires laboratory-based measurements of a venous blood sample  which faces challenges like high cost, producing medical waste, invasive and inflexible location.
+## Soluation
+To address the existing issues in anemia diagnosis, we propose to design a multimodal AI  model with integrated hardware accessories on the smart phone to combine electronic health records (EHR), biological images, and non-invasive sensor signals to achieve pain-free, portable, and accurate diagnosis. The  system is named as 'lab on an APP' whose main mission is to provide  personalized prediction, personalized treatment planning and personalized monitoring for users. 
+## Key challenges
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+### Algorithmic level
+* Ensuring robustness of multimodal learning despite potential modality missing or noise interference.
+* Handling medical time series with missing values and  irregular time intervals.
+* Developing an effective multimodal fusion framework that can integrate EHR data, biological images, and sensor data efficiently.
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+### Hardware level
+* Highly integration of sensors, power supplies, microprocessors and communication modules.
+* Designing a multi-wavelength PPG system.
+* Achieving low power consumption while maintaining a high signal-to-noise ratio.
+
+### Trial level
+* Obtaining ethical approval and recruiting participants for trials.
+* Designing effective trial processes and incorporating feedback mechanisms.
+* Navigating product iterations and market transformation efficiently.
+
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/project_image/project1/UCL_EEE_2024.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
+    The overview of the project.
 </div>
 
-You can also put regular text between your rows of images, even citations {% cite einstein1950meaning %}.
-Say you wanted to write a bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
-
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
-
-{% raw %}
-
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
-
-{% endraw %}

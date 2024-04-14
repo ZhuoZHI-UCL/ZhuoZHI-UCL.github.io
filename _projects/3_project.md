@@ -1,81 +1,41 @@
 ---
 layout: page
-title: project 3
-description: a project that redirects to another website
-img: assets/img/7.jpg
-redirect: https://unsplash.com
+title: In‑Context Learning for Multimodal Learning with Missing Modalities and Data Scarcity
+description: HTTPS://ARXiV.ORG/ABS/2403.09428 (UNDER REViEW) 
+img: assets/img/project_image/project3/1.png
 importance: 3
-category: work
+category: PhD period
+giscus_comments: false
 ---
+Click [here](HTTPS://ARXiV.ORG/ABS/2403.09428) for paper 
+## Abstract
+Multimodal machine learning with missing modalities is an increasingly relevant challenge arising in various applications such as healthcare. This paper extends the current research into missing modalities to the low-data regime, i.e., a downstream task has both missing modalities and limited sample size issues. This problem setting is particularly challenging and also practical as it is often expensive to get full-modality data and sufficient annotated training samples. We propose to use retrieval-augmented in-context learning to address these two crucial issues by unleashing the potential of a transformer's in-context learning ability. Diverging from existing methods, which primarily belong to the parametric paradigm and often require sufficient training samples, our work exploits the value of the available full-modality data, offering a novel perspective on resolving the challenge. The proposed data-dependent framework exhibits a higher degree of sample efficiency and is empirically demonstrated to enhance the classification model's performance on both full- and missing-modality data in the low-data regime across various multimodal learning tasks. When only 1% of the training data are available, our proposed method demonstrates an average improvement of 6.1% over a recent strong baseline across various datasets and missing states. Notably, our method also reduces the performance gap between full-modality and missing-modality data compared with the baseline. Code is [here](https://github.com/ZhuoZHI-UCL/ICL_multimodal).
+## Overview
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/project_image/project3/overall_framework.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+</div>
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+The overview of the proposed method. **(a)** Assuming that each sample contains data with 2 modalities $$x_i^{m_1}$$ and $$x_i^{m_2}$$, we get the feature $$H_i = ({H_i}^{m_1},{H_i}^{m_2},cls_i)$$ of the sample by using a pre-trained multimodal transformer, note that $$x_i^{m_1}$$ or $$x_i^{m_2}$$ may be missed. **(b)** We use the $$cls$$ token to calculate the cosine similarity between the current sample and all full-modality training samples, and then retrieve the most similar $$Q$$ samples. **(c)** We input the pooled feature of the current sample  $$\tilde{H}_i$$ and neighbor samples $$\tilde{H}^{NN}_i$$ into the ICL module to predict the label $${\hat{y}}_i$$. Note that only the ICL module requires to be trained and the others are frozen. The retrieval-augmented operation is the same for both the training and inference processes. 
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+## Main results
+The evaluated results for all datasets under various missing cases and sample sizes are shown in the following tables. $$r_{sub}$$ is the subsampling ratio for simulating data scarcity. F, $$m1$$, $$m2$$ refer to the sample with complete modalities, the sample only has $$m1$$ modality  and the sample only has $$m2$$ modality, respectively. ICL-CA and ICL-NTP are two solutions we propose. FT-A and FT-C mean fine tuning all layers/ classification layers in the transfer learning process. MAP is a recent SOTA baseline we compare with. Bold number indicates the best performance. 
+
+With sufficient target dataset size (notably for $$r_{sub} > 0.1$$), FT-A exhibits superior performance, attributed to the update of all parameters in the target domain. MAP follows closely, achieving competitive results by updating fewer parameters. FT-C, on the other hand, performs the worst at all moments, due to the limited number of updated parameters. When the target data is limited, our proposed ICL method, particularly ICL-CA, demonstrates remarkable efficacy (especially for $$r_{sub} < 0.1$$), surpassing most baseline approaches. This trend intensifies as $$r_{sub}$$ decreases. Please check the [paper](HTTPS://ARXiV.ORG/ABS/2403.09428) for more results.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/project_image/project3/0.1_1.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/project_image/project3/0.01-0.1.png" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
 
-{% raw %}
-
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
-
-{% endraw %}

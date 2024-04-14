@@ -645,12 +645,15 @@ footer.sticky-bottom {
   }
 
   h2.category {
-    color: var(--global-divider-color);
+    color: $black-color;
     border-bottom: 1px solid var(--global-divider-color);
     padding-top: 0.5rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
-    text-align: right;
+    text-align: left;
+  }
+  h2.card-title {
+    font-size: 15px; // 定义非hover状态下的字体大小
   }
 }
 
@@ -676,7 +679,8 @@ footer.sticky-bottom {
   }
 
   h2.bibliography {
-    color: var(--global-divider-color);
+    // color: var(--global-divider-color);
+    color: $black-color;
     border-top: 1px solid var(--global-divider-color);
     padding-top: 1rem;
     margin-top: 2rem;

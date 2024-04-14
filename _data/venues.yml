@@ -4,3 +4,15 @@
 
 "PhysRev":
   url: https://journals.aps.org/
+
+"IEEE":
+  url: https://ieeexplore.ieee.org/
+
+"ARXIV":
+  url: https://arxiv.org/
+
+"MDPI":
+  url: https://www.mdpi.com/
+
+"ELSEVIER":
+  url: https://www.elsevier.com/

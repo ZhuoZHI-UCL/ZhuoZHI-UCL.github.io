@@ -2,10 +2,10 @@
 layout: page
 title: projects
 permalink: /projects/
-description: A growing collection of your cool projects.
+description: My attended projects during PhD, Master and Bachelor periods.
 nav: true
 nav_order: 3
-display_categories: [work, fun]
+display_categories: [PhD period, Master period, Bachelor period]
 horizontal: false
 ---
 
