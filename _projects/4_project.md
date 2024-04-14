@@ -1,41 +1,90 @@
 ---
 layout: page
-title: In‑Context Learning for Multimodal Learning with Missing Modalities and Data Scarcity
-description: HTTPS://ARXiV.ORG/ABS/2401.12002 (UNDERViEW) 
-img: assets/img/project_image/project3/1.png
+title: "HgbNet: predicting hemoglobin level/anemia degree from EHR data"
+description: https://arxiv.org/abs/2401.12002 (under review) 
+img: assets/img/project_image/project4/1.png
 importance: 4
 category: PhD period
 giscus_comments: false
 ---
-Click [here](HTTPS://ARXiV.ORG/ABS/2403.09428) for paper 
+# [HgbNet: predicting hemoglobin level/anemia degree from EHR data](https://arxiv.org/abs/2401.12002) (under review)
 ## Abstract
-Multimodal machine learning with missing modalities is an increasingly relevant challenge arising in various applications such as healthcare. This paper extends the current research into missing modalities to the low-data regime, i.e., a downstream task has both missing modalities and limited sample size issues. This problem setting is particularly challenging and also practical as it is often expensive to get full-modality data and sufficient annotated training samples. We propose to use retrieval-augmented in-context learning to address these two crucial issues by unleashing the potential of a transformer's in-context learning ability. Diverging from existing methods, which primarily belong to the parametric paradigm and often require sufficient training samples, our work exploits the value of the available full-modality data, offering a novel perspective on resolving the challenge. The proposed data-dependent framework exhibits a higher degree of sample efficiency and is empirically demonstrated to enhance the classification model's performance on both full- and missing-modality data in the low-data regime across various multimodal learning tasks. When only 1% of the training data are available, our proposed method demonstrates an average improvement of 6.1% over a recent strong baseline across various datasets and missing states. Notably, our method also reduces the performance gap between full-modality and missing-modality data compared with the baseline. Code is [here](https://github.com/ZhuoZHI-UCL/ICL_multimodal).
+Anemia is a prevalent medical condition that typically requires invasive blood tests for diagnosis and monitoring. Electronic health records (EHRs) have emerged as valuable data sources for numerous medical studies. EHR-based hemoglobin level/anemia degree prediction is non-invasive and rapid but still faces some challenges due to the fact that EHR data is typically an irregular multivariate time series containing a significant number of missing values and irregular time intervals. To address these issues, we introduce HgbNet, a machine learning-based prediction model that emulates clinicians' decision-making processes for hemoglobin level/anemia degree prediction. The model incorporates a NanDense layer with a missing indicator to handle missing values and employs attention mechanisms to account for both local irregularity and global irregularity. We evaluate the proposed method using two real-world datasets across two use cases. In our first use case, we predict hemoglobin level/anemia degree at moment T+1 by utilizing records from moments prior to T+1. In our second use case, we integrate all historical records with additional selected test results at moment T+1 to predict hemoglobin level/anemia degree at the same moment, T+1. HgbNet outperforms the best baseline results across all datasets and use cases. These findings demonstrate the feasibility of estimating hemoglobin levels and anemia degree from EHR data, positioning HgbNet as an effective non-invasive anemia diagnosis solution that could potentially enhance the quality of life for millions of affected individuals worldwide. To our knowledge, HgbNet is the first machine learning model leveraging EHR data for hemoglobin level/anemia degree prediction.
 ## Overview
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/project_image/project3/overall_framework.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/project_image/project4/1.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
 
 </div>
-
-The overview of the proposed method. **(a)** Assuming that each sample contains data with 2 modalities $$x_i^{m_1}$$ and $$x_i^{m_2}$$, we get the feature $$H_i = ({H_i}^{m_1},{H_i}^{m_2},cls_i)$$ of the sample by using a pre-trained multimodal transformer, note that $$x_i^{m_1}$$ or $$x_i^{m_2}$$ may be missed. **(b)** We use the $$cls$$ token to calculate the cosine similarity between the current sample and all full-modality training samples, and then retrieve the most similar $$Q$$ samples. **(c)** We input the pooled feature of the current sample  $$\tilde{H}_i$$ and neighbor samples $$\tilde{H}^{NN}_i$$ into the ICL module to predict the label $${\hat{y}}_i$$. Note that only the ICL module requires to be trained and the others are frozen. The retrieval-augmented operation is the same for both the training and inference processes. 
+The structure of the proposed HgbNet. At each time step $$t$$, the HgbNet input comprises four components: the original EHR data $$x_t$$, the feature-specific time interval matrix $$e_t$$, the missing indicator $$m_t$$, and the label time interval matrix $$\delta_t$$. The time embedding (TE) layer and NanDense layers process $$e_t$$ and $$x_t$$, respectively, before being input to the LSTM-M network alongside $$m_t$$ to generate the hidden representation $$h_t$$. Subsequently, $$\{h_1,h_2,...,h_T\}$$ interacts with itself, $$\{\hat{e}_1,\hat{e}_2,...,\hat{e}_T\}$$, and $$\{\delta_1,\delta_2,...,\delta_T\}$$ to compute three attention types, accounting for each record's interaction, local irregularity, and global irregularity. Finally, the fused hidden representation $$h_{\tau T}$$, derived from the three attention results, is employed for downstream tasks to predict hemoglobin level and anemia degree at time step $$T+1$$.
 
 ## Main results
-The evaluated results for all datasets under various missing cases and sample sizes are shown in the following tables. $$r_{sub}$$ is the subsampling ratio for simulating data scarcity. F, $$m1$$, $$m2$$ refer to the sample with complete modalities, the sample only has $$m1$$ modality  and the sample only has $$m2$$ modality, respectively. ICL-CA and ICL-NTP are two solutions we propose. FT-A and FT-C mean fine tuning all layers/ classification layers in the transfer learning process. MAP is a recent SOTA baseline we compare with. Bold number indicates the best performance. 
+Our evaluation of the proposed model contains two datasets (Mimic III and eICU), two tasks (hemoglobin level/anemia degree prediction) and two use cases (use all historical data up to time T to forecast the value at T+1, or integrate select data available at T+1 with the historical data to predict the value at T+1). The main experimental results are presented below. The baseline we compare with  are LSTM, T-LSTM, Data-GRU, ATTAIN, MIAM, HiTANet.
 
-With sufficient target dataset size (notably for $$r_{sub} > 0.1$$), FT-A exhibits superior performance, attributed to the update of all parameters in the target domain. MAP follows closely, achieving competitive results by updating fewer parameters. FT-C, on the other hand, performs the worst at all moments, due to the limited number of updated parameters. When the target data is limited, our proposed ICL method, particularly ICL-CA, demonstrates remarkable efficacy (especially for $$r_{sub} < 0.1$$), surpassing most baseline approaches. This trend intensifies as $$r_{sub}$$ decreases. Please check the [paper](HTTPS://ARXiV.ORG/ABS/2403.09428) for more results.
+### use case 1
+Initially, we plot the predicted hemoglobin levels against their corresponding true values, as illustrated in the image below (samples are sorted by
+true value for easy observation). The evaluation matrix with corresponding standard deviation for hemoglobin level and anemia degree prediction are provided in tables.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/project_image/project3/0.1_1.png" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/project_image/project4/hgb_mimic.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
+</div>
+<div class="caption">
+    The hemoglobin level prediction result of MIMIC III dataset.
+</div>
+
+<div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/project_image/project3/0.01-0.1.png" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/project_image/project4/hgb_eicu.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
+</div>
+<div class="caption">
+    The hemoglobin level prediction result of eICU dataset.
 </div>
 
 
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/project_image/project4/hgb_matric.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    The evaluation matrix for hemoglobin level estimation.
+</div>
 
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/project_image/project4/anemia_matric.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    The evaluation matrix for anemia degree estimation.
+</div>
 
+For hemoglobin level prediction, LSTM is the least effective, with the highest RMSE, MAE, and lowest R2 scores on both datasets.  This deficiency can be attributed to the LSTM model's inability to manage irregular time intervals and missing values. T-LSTM demonstrates improvement but underperforms compared to other baselines.  This outcome can be explained by T-LSTM's focus on irregular time intervals between visits while disregarding missing values.  The remaining models display further advancements, with the proposed HgbNet attaining the lowest RMSE and MAE, as well as the highest R2 scores in both datasets. The improvements   over the best metric from  other baselines in the two datasets are 5.2$$\%$$, 16.2$$\%$$, 0.6$$\%$$ and 19.5$$\%$$, 6.4$$\%$$, 1.9$$\%$$. Concerning the Data-GRU, ATTAIN, MIAM, and HiTANet methods, the latter two yield marginally better results than the former two, possibly due to their incorporation of various attention types. 
+
+For anemia degree prediction, generally, the results align with the hemoglobin  prediction  findings. LSTM and T-LSTM display limited capabilities, while other baselines exhibit improvement, with HgbNet showcasing the best performance. It achieves the highest weighted precision and weighted F1 scores in both datasets. Specifically, the improvements over the best results from other baselines amount to 2.8$$\%$$, 1.3$$\%$$, 0.2$$\%$$, and 1.2$$\%$$.
+In conclusion, all baseline models improve in handling irregular time series compared to traditional LSTM methods. Our proposed HgbNet consistently outperforms existing methods for both tasks across the two datasets, showcasing its superior performance.
+
+We also analyze the effect of irregular time intervals on model performance. In practice, the interval between moments $$T$$ and $$T+1$$ is indeterminate (i.e., the patient's last diagnosis result could have been hours or days ago), and excessively large intervals may render predictions unreliable. We now aim to explore this issue further.
+
+Due to space constraints, we employ R2 scores and F1 scores as evaluation metrics for two tasks, respectively. The prediction results under irregular time intervals for MIMIC III dataset are presented below.
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/project_image/project4/interval_r2.png" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/project_image/project4/interval_f1.png" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    The matric of hemoglobin level and anemia degree prediction for MIMIC III dataset at different time intervals between T and T+1.
+</div>
+
+### use case 2
+Due to the limited space, please check the [paper](https://arxiv.org/abs/2401.12002) for more results.
