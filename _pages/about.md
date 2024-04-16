@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Third-year PhD student at <a href='https://www.ee.ucl.ac.uk/iiml/'>I2|ML group </a>, <a href='https://www.ucl.ac.uk/'>University College London</a>.<br>Check the CV from <a href='https://github.com/ZhuoZHI-UCL/ZhuoZHI-UCL.github.io/blob/master/CV/*.pdf'>here</a>.
+subtitle: Third-year PhD student at <a href='https://www.ee.ucl.ac.uk/iiml/'>I2|ML group </a>, <a href='https://www.ucl.ac.uk/'>University College London</a>.<br>Check the CV from <a href='https://github.com/ZhuoZHI-UCL/ZhuoZHI-UCL.github.io/blob/master/CV/CV_ZZ.pdf'>here</a>.
 
 profile:
   align: right
