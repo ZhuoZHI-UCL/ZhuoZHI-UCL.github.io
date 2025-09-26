@@ -1,14 +1,14 @@
-name: Prettier code formatter
+# name: Prettier code formatter
 
-on:
-  pull_request:
-    branches:
-      - master
-      - main
-  push:
-    branches:
-      - master
-      - main
+# on:
+#   pull_request:
+#     branches:
+#       - master
+#       - main
+#   push:
+#     branches:
+#       - master
+#       - main
 
 jobs:
   check:
@@ -46,3 +46,4 @@ jobs:
         with:
           event-type: prettier-failed-on-pr
           client-payload: '{"pr_number": "${{ github.event.number }}", "artifact_url": "${{ steps.artifact-upload.outputs.artifact-url }}", "run_id": "${{ github.run_id }}"}'
+
